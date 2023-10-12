@@ -9,9 +9,9 @@ export interface JSONResult<Data> {
 export type RouteResult<Data> = JSONResult<Data> | Promise<JSONResult<Data>> | void | Promise<void>;
 
 export interface RouteOptions<
-  Query extends NestedObjectValidatorExpression,
-  Body extends NestedObjectValidatorExpression,
-  Data extends NestedObjectValidatorExpression
+  Query extends NestedObjectValidatorExpression | void,
+  Body extends NestedObjectValidatorExpression | void,
+  Data extends NestedObjectValidatorExpression | void
 > {
   method: Uppercase<HTTPMethods>;
   query?: Query;
