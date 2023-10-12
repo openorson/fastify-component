@@ -1,0 +1,13 @@
+{
+  "name": "fastify-component",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "@types/node": "^18.17.14",
+    "typescript": "^5.2.2"
+  }
+}

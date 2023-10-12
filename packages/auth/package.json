@@ -1,0 +1,8 @@
+{
+  "name": "@fastify-component/auth",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@fastify-component/core": "*"
+  }
+}
