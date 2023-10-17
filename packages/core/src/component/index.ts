@@ -5,15 +5,12 @@ import { DataSchemas } from "../types/model";
 export function defineComponent<
   Name extends string,
   Config extends {},
-  Paths extends string,
-  Querys extends Record<Paths, NestedObjectValidatorExpression>,
-  Bodys extends Record<Paths, NestedObjectValidatorExpression>,
-  Datas extends Record<Paths, NestedObjectValidatorExpression>,
+  Params extends Record<string, NestedObjectValidatorExpression>,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},
   Hooks extends {},
   Expose extends {}
->(componentOptions: ComponentOptions<Name, Config, Paths, Querys, Bodys, Datas, Schemas, Schedules, Service, Hooks, Expose>): Component {
+>(componentOptions: ComponentOptions<Name, Config, Params, Schemas, Schedules, Service, Hooks, Expose>): Component {
   return {};
 }

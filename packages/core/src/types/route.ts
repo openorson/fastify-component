@@ -25,10 +25,6 @@ export interface RouteOptions<
   }) => RouteResult<ValidatorExpressionAsType<Data>>;
 }
 
-export type RoutesOptions<
-  Querys extends Record<string, NestedObjectValidatorExpression>,
-  Bodys extends Record<string, NestedObjectValidatorExpression>,
-  Datas extends Record<string, NestedObjectValidatorExpression>
-> = {
-  [Path in keyof Querys]: RouteOptions<Querys[Path]>;
+export type RoutesOptions<Params extends Record<string, NestedObjectValidatorExpression>> = {
+  [Path in keyof Params]: RouteOptions<Params[Path]>;
 };
