@@ -31,7 +31,7 @@ export interface ExposeContext<Config, Service> extends Context<Config> {
 export interface ComponentOptions<
   Name extends string,
   Config extends {},
-  Params extends Record<string, NestedObjectValidatorExpression>,
+  Routes extends Record<string, [NestedObjectValidatorExpression, NestedObjectValidatorExpression, NestedObjectValidatorExpression]>,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},
@@ -42,7 +42,7 @@ export interface ComponentOptions<
   name: Name;
   prefix?: string;
   config?: Config;
-  routes?: ContextOption<RoutesContext<Config, Models>, RoutesOptions<Params>>;
+  routes?: ContextOption<RoutesContext<Config, Models>, RoutesOptions<Routes>>;
   schemas?: ContextOption<SchemasContext<Config>, Schemas>;
   schedules?: ContextOption<SchedulesContext<Config, Models>, Schedules>;
   service?: ContextOption<ServiceContext<Config, Models>, Service>;

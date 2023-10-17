@@ -40,26 +40,17 @@ export const AuthComponent = defineComponent({
   routes: {
     "/login": {
       method: "GET",
-      query: {
-        a: "string!",
-        b: {
-          c: "boolean!",
-        },
-      },
-      body: {
-        g: "boolean!",
-      },
+      expressions: [{ a: "boolean!" }, { b: "number!" }, { c: "string!" }],
       handler(context) {
         context.query;
       },
     },
     "/logout": {
       method: "GET",
-      query: {
-        b: "string!",
-      },
+      expressions: [{ a: "boolean!" }, { b: "boolean!" }, { c: "boolean!" }],
       handler(context) {
         context.query;
+        return { data: { c: true } };
       },
     },
   },

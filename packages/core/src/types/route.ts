@@ -9,22 +9,20 @@ export interface JSONResult<Data> {
 export type RouteResult<Data> = JSONResult<Data> | Promise<JSONResult<Data>> | void | Promise<void>;
 
 export interface RouteOptions<
-  Query extends NestedObjectValidatorExpression = NestedObjectValidatorExpression,
-  Body extends NestedObjectValidatorExpression = NestedObjectValidatorExpression,
-  Data extends NestedObjectValidatorExpression = NestedObjectValidatorExpression
+  Expressions extends [NestedObjectValidatorExpression, NestedObjectValidatorExpression, NestedObjectValidatorExpression]
 > {
   method: Uppercase<HTTPMethods>;
-  query?: Query;
-  body?: Body;
-  data?: Data;
+  expressions: Expressions;
   handler: (context: {
-    query: ValidatorExpressionAsType<Query>;
-    body: ValidatorExpressionAsType<Body>;
+    query: ValidatorExpressionAsType<Expressions[0]>;
+    body: ValidatorExpressionAsType<Expressions[1]>;
     request: FastifyRequest;
     reply: FastifyReply;
-  }) => RouteResult<ValidatorExpressionAsType<Data>>;
+  }) => RouteResult<ValidatorExpressionAsType<Expressions[2]>>;
 }
 
-export type RoutesOptions<Params extends Record<string, NestedObjectValidatorExpression>> = {
-  [Path in keyof Params]: RouteOptions<Params[Path]>;
+export type RoutesOptions<
+  Routes extends Record<string, [NestedObjectValidatorExpression, NestedObjectValidatorExpression, NestedObjectValidatorExpression]>
+> = {
+  [Path in keyof Routes]: RouteOptions<Routes[Path]>;
 };
