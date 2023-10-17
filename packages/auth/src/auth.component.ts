@@ -1,4 +1,4 @@
-import { createRoute, defineComponent } from "@fastify-component/core";
+import { defineComponent } from "@fastify-component/core";
 
 export const AuthComponent = defineComponent({
   name: "auth",
@@ -37,20 +37,27 @@ export const AuthComponent = defineComponent({
       },
     },
   }),
-  routes: () => ({
-    "/login": createRoute({
+  routes: {
+    "/login": {
       method: "GET",
       query: {
-        a: "boolean!",
+        a: "string!",
+        b: {
+          c: "boolean!",
+        },
       },
-      handler({ query }) {},
-    }),
-    "/logout": createRoute({
+      handler(context) {
+        context.query;
+      },
+    },
+    "/logout": {
       method: "GET",
       query: {
-        b: "number!",
+        b: "string!",
       },
-      handler({ query }) {},
-    }),
-  }),
+      handler(context) {
+        context.query;
+      },
+    },
+  },
 });

@@ -1,60 +1,59 @@
-import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
-import { Route, RouteOptions } from "../types/route";
+// import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
+// import { RouteOptions, RoutesOptions } from "../types/route";
 
-export function createRoute<
-  Query extends NestedObjectValidatorExpression,
-  Body extends NestedObjectValidatorExpression,
-  Data extends NestedObjectValidatorExpression
->(options: RouteOptions<Query, Body, Data>): Route {
-  return {};
-}
+// export function createRoute<
+//   Query extends NestedObjectValidatorExpression,
+//   Body extends NestedObjectValidatorExpression,
+//   Data extends NestedObjectValidatorExpression
+// >(options: RouteOptions<Query, Body, Data>) {
+//   return {};
+// }
 
-interface Type<T> {
-  label: T;
-  value: (arg: T) => void;
-}
+// export function createRoutes<Options extends Record<string, NestedObjectValidatorExpression>>(options: RoutesOptions<Options>) {}
 
-export function createRoutes<
-  Options extends Record<string, Type<unknown>>,
-  UnionOptions = {
-    [K in keyof Options]: {
-      [K2 in K]: Options[K2];
-    };
-  }[keyof Options]
->(options: UnionOptions) {}
+// createRoutes({
+//   a: {
+//     method: "GET",
+//     query: {
+//       a: "boolean!",
+//     },
+//     handler(context) {
+//       context.query;
+//     },
+//   },
+//   b: {
+//     method: "GET",
+//     query: {
+//       a: "boolean!",
+//       b: "string!",
+//       c: "date!",
+//     },
+//     handler(context) {
+//       context.query;
+//     },
+//   },
+// });
 
-createRoutes({
-  a: {
-    label: 1,
-    value(arg) {
-      console.log(arg);
-    },
-  },
-  b: {
-    label: "b",
-    value(arg) {
-      console.log(arg);
-    },
-  },
-});
+// interface FooValue<T> {
+//   default: T;
+//   fn: (val: T) => any;
+// }
 
-const opts = {
-  a: {
-    query: {
-      a: "boolean!",
-    },
-  },
-  b: {
-    query: {
-      b: 1,
-    },
-  },
-};
+// type Foo<T> = {
+//   [K in keyof T]: FooValue<T[K]>;
+// };
 
-type ToUnion<T extends {}> = {
-  [K in keyof T]: {
-    [K2 in K]: T[K2];
-  };
-}[keyof T];
+// function asFoo<T>(foo: Foo<T>): Foo<T> {
+//   return foo;
+// }
 
-type Union = ToUnion<typeof opts>;
+// asFoo({
+//   key1: {
+//     default: 1,
+//     fn(val) {},
+//   },
+//   key2: {
+//     default: "2",
+//     fn(val) {},
+//   },
+// });
