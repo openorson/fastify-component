@@ -8,8 +8,6 @@ export interface Context<Config> {
   readonly config: Config;
 }
 
-export interface HooksContext<Config> extends Context<Config> {}
-
 export interface RoutesContext<Config, Models> extends Context<Config> {
   models: Models;
 }
@@ -24,6 +22,8 @@ export interface ServiceContext<Config, Models> extends Context<Config> {
   models: Models;
 }
 
+export interface HooksContext<Config> extends Context<Config> {}
+
 export interface ExposeContext<Config, Service> extends Context<Config> {
   service: Service;
 }
@@ -31,22 +31,25 @@ export interface ExposeContext<Config, Service> extends Context<Config> {
 export interface ComponentOptions<
   Name extends string,
   Config extends {},
-  Hooks extends {},
-  Routes extends Record<string, NestedObjectValidatorExpression>,
+  Paths extends string,
+  Querys extends Record<Paths, NestedObjectValidatorExpression>,
+  Bodys extends Record<Paths, NestedObjectValidatorExpression>,
+  Datas extends Record<Paths, NestedObjectValidatorExpression>,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},
+  Hooks extends {},
   Expose extends {},
   Models extends DataModels<Schemas> = DataModels<Schemas>
 > {
   name: Name;
   prefix?: string;
   config?: Config;
-  hooks?: ContextOption<HooksContext<Config>, Hooks>;
-  routes?: ContextOption<RoutesContext<Config, Models>, RoutesOptions<Routes>>;
+  routes?: ContextOption<RoutesContext<Config, Models>, RoutesOptions<Querys, Bodys, Datas>>;
   schemas?: ContextOption<SchemasContext<Config>, Schemas>;
   schedules?: ContextOption<SchedulesContext<Config, Models>, Schedules>;
   service?: ContextOption<ServiceContext<Config, Models>, Service>;
+  hooks?: ContextOption<HooksContext<Config>, Hooks>;
   expose?: ContextOption<ExposeContext<Config, Service>, Expose>;
 }
 

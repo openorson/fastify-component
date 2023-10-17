@@ -46,6 +46,9 @@ export const AuthComponent = defineComponent({
           c: "boolean!",
         },
       },
+      body: {
+        g: "boolean!",
+      },
       handler(context) {
         context.query;
       },
