@@ -5,7 +5,10 @@ import { DataSchemas } from "../types/model";
 export function defineComponent<
   Name extends string,
   Config extends {},
-  Routes extends Record<string, [NestedObjectValidatorExpression, NestedObjectValidatorExpression, NestedObjectValidatorExpression]>,
+  Routes extends Record<
+    string,
+    Partial<{ query: NestedObjectValidatorExpression; body: NestedObjectValidatorExpression; data: NestedObjectValidatorExpression }>
+  >,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},

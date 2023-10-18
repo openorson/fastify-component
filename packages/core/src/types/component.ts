@@ -31,7 +31,10 @@ export interface ExposeContext<Config, Service> extends Context<Config> {
 export interface ComponentOptions<
   Name extends string,
   Config extends {},
-  Routes extends Record<string, [NestedObjectValidatorExpression, NestedObjectValidatorExpression, NestedObjectValidatorExpression]>,
+  Routes extends Record<
+    string,
+    Partial<{ query: NestedObjectValidatorExpression; body: NestedObjectValidatorExpression; data: NestedObjectValidatorExpression }>
+  >,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},
