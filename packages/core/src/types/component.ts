@@ -1,6 +1,5 @@
-import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
 import { DataModels, DataSchemas } from "./model";
-import { RoutesOptions } from "./route";
+import { RouteSchema, RoutesOptions } from "./route";
 
 export type ContextOption<Context, Option> = Option | ((context: Context) => Option);
 
@@ -31,10 +30,7 @@ export interface ExposeContext<Config, Service> extends Context<Config> {
 export interface ComponentOptions<
   Name extends string,
   Config extends {},
-  Routes extends Record<
-    string,
-    Partial<{ query: NestedObjectValidatorExpression; body: NestedObjectValidatorExpression; data: NestedObjectValidatorExpression }>
-  >,
+  Routes extends Record<string, Partial<RouteSchema>>,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},

@@ -1,14 +1,11 @@
-import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
 import { Component, ComponentOptions } from "../types/component";
 import { DataSchemas } from "../types/model";
+import { RouteSchema } from "../types/route";
 
 export function defineComponent<
   Name extends string,
   Config extends {},
-  Routes extends Record<
-    string,
-    Partial<{ query: NestedObjectValidatorExpression; body: NestedObjectValidatorExpression; data: NestedObjectValidatorExpression }>
-  >,
+  Routes extends Record<string, Partial<RouteSchema>>,
   Schemas extends DataSchemas,
   Schedules extends {},
   Service extends {},
