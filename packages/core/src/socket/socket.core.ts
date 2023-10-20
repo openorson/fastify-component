@@ -1,5 +1,7 @@
-import { ComponentSocketDefinitions, ComponentSocketParams, ComponentSockets } from "./socket.types";
+import { ComponentSocketDefinitions, ComponentSockets } from "./socket.types";
 
-export function defineSockets<Params extends ComponentSocketParams>(definitions: ComponentSocketDefinitions<Params>): ComponentSockets {
+export function defineSockets<SocketDefinitions extends ComponentSocketDefinitions>(
+  definitions: SocketDefinitions
+): ComponentSockets<SocketDefinitions> {
   return {};
 }

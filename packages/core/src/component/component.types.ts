@@ -1,76 +1,81 @@
-import { ComponentActions } from "../action/action.types";
-import { ComponentConfigs } from "../config/config.types";
-import { ComponentHooks } from "../hook/hook.types";
-import { ComponentModels } from "../model/model.types";
-import { ComponentRoutes } from "../route/route.types";
-import { ComponentSchedules } from "../schedule/schedule.types";
-import { ComponentSockets } from "../socket/socket.types";
-
-export type ComponentContext<Context, Component> = Component | ((context: Context) => Component);
+import { ComponentActionDefinitions, ComponentActions } from "../action/action.types";
+import { ComponentConfigDefinitions, ComponentConfigs } from "../config/config.types";
+import { ComponentHookDefinitions, ComponentHooks } from "../hook/hook.types";
+import { ComponentModelDefinitions, ComponentModels } from "../model/model.types";
+import { ComponentRouteDefinitions, ComponentRoutes } from "../route/route.types";
+import { ComponentScheduleDefinitions, ComponentSchedules } from "../schedule/schedule.types";
+import { ComponentSocketDefinitions, ComponentSockets } from "../socket/socket.types";
 
 export interface ComponentDefinitions<
   Name extends string = string,
-  Configs extends ComponentConfigs = ComponentConfigs,
-  Actions extends ComponentActions = ComponentActions,
-  Models extends ComponentModels = ComponentModels,
-  Routes extends ComponentRoutes = ComponentRoutes,
-  Sockets extends ComponentSockets = ComponentSockets,
-  Schedules extends ComponentSchedules = ComponentSchedules,
-  Hooks extends ComponentHooks = ComponentHooks
+  ConfigDefinitions extends ComponentConfigDefinitions = ComponentConfigDefinitions,
+  ActionDefinitions extends ComponentActionDefinitions = ComponentActionDefinitions,
+  ModelDefinitions extends ComponentModelDefinitions = ComponentModelDefinitions,
+  RouteDefinitions extends ComponentRouteDefinitions = ComponentRouteDefinitions,
+  SocketDefinitions extends ComponentSocketDefinitions = ComponentSocketDefinitions,
+  ScheduleDefinitions extends ComponentScheduleDefinitions = ComponentScheduleDefinitions,
+  HookDefinitions extends ComponentHookDefinitions = ComponentHookDefinitions
 > {
   name: Name;
-  configs?: ComponentContext<{ name: Name }, Configs>;
-  actions?: Actions;
-  models?: ComponentContext<{ name: Name; configs?: Configs; actions?: Actions }, Models>;
-  routes?: ComponentContext<{ name: Name; configs?: Configs; actions?: Actions; models?: Models }, Routes>;
-  sockets?: ComponentContext<{ name: Name; configs?: Configs; actions?: Actions; models?: Models }, Sockets>;
-  schedules?: ComponentContext<{ name: Name; configs?: Configs; actions?: Actions; models?: Models }, Schedules>;
-  hooks?: ComponentContext<{ name: Name; configs?: Configs; actions?: Actions }, Hooks>;
-}
-
-export interface ComponentInstanceBlueprint<
-  Name extends string = string,
-  Configs extends ComponentConfigs = ComponentConfigs,
-  Actions extends ComponentActions = ComponentActions,
-  Models extends ComponentModels = ComponentModels,
-  Routes extends ComponentRoutes = ComponentRoutes,
-  Sockets extends ComponentSockets = ComponentSockets,
-  Schedules extends ComponentSchedules = ComponentSchedules,
-  Hooks extends ComponentHooks = ComponentHooks
-> {
-  name: Name;
-  configs?: Configs;
-  actions?: Actions;
-  models?: Models;
-  routes?: Routes;
-  sockets?: Sockets;
-  schedules?: Schedules;
-  hooks?: Hooks;
+  configs?: ComponentConfigs<ConfigDefinitions>;
+  actions?: ComponentActions<ActionDefinitions>;
+  models?: ComponentModels<ModelDefinitions>;
+  routes?: ComponentRoutes<RouteDefinitions>;
+  sockets?: ComponentSockets<SocketDefinitions>;
+  schedules?: ComponentSchedules<ScheduleDefinitions>;
+  hooks?: ComponentHooks<HookDefinitions>;
 }
 
 export interface ComponentInstance<
   Name extends string = string,
-  Configs extends ComponentConfigs = ComponentConfigs,
-  Actions extends ComponentActions = ComponentActions,
-  Models extends ComponentModels = ComponentModels,
-  Routes extends ComponentRoutes = ComponentRoutes,
-  Sockets extends ComponentSockets = ComponentSockets,
-  Schedules extends ComponentSchedules = ComponentSchedules,
-  Hooks extends ComponentHooks = ComponentHooks
+  ConfigDefinitions extends ComponentConfigDefinitions = ComponentConfigDefinitions,
+  ActionDefinitions extends ComponentActionDefinitions = ComponentActionDefinitions,
+  ModelDefinitions extends ComponentModelDefinitions = ComponentModelDefinitions,
+  RouteDefinitions extends ComponentRouteDefinitions = ComponentRouteDefinitions,
+  SocketDefinitions extends ComponentSocketDefinitions = ComponentSocketDefinitions,
+  ScheduleDefinitions extends ComponentScheduleDefinitions = ComponentScheduleDefinitions,
+  HookDefinitions extends ComponentHookDefinitions = ComponentHookDefinitions
 > {
-  blueprint: ComponentInstanceBlueprint<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks>;
+  definitions: ComponentDefinitions<
+    Name,
+    ConfigDefinitions,
+    ActionDefinitions,
+    ModelDefinitions,
+    RouteDefinitions,
+    SocketDefinitions,
+    ScheduleDefinitions,
+    HookDefinitions
+  >;
 }
 
 export interface Component<
   Name extends string = string,
-  Configs extends ComponentConfigs = ComponentConfigs,
-  Actions extends ComponentActions = ComponentActions,
-  Models extends ComponentModels = ComponentModels,
-  Routes extends ComponentRoutes = ComponentRoutes,
-  Sockets extends ComponentSockets = ComponentSockets,
-  Schedules extends ComponentSchedules = ComponentSchedules,
-  Hooks extends ComponentHooks = ComponentHooks
+  ConfigDefinitions extends ComponentConfigDefinitions = ComponentConfigDefinitions,
+  ActionDefinitions extends ComponentActionDefinitions = ComponentActionDefinitions,
+  ModelDefinitions extends ComponentModelDefinitions = ComponentModelDefinitions,
+  RouteDefinitions extends ComponentRouteDefinitions = ComponentRouteDefinitions,
+  SocketDefinitions extends ComponentSocketDefinitions = ComponentSocketDefinitions,
+  ScheduleDefinitions extends ComponentScheduleDefinitions = ComponentScheduleDefinitions,
+  HookDefinitions extends ComponentHookDefinitions = ComponentHookDefinitions
 > {
-  $definitions: ComponentDefinitions<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks>;
-  (): ComponentInstance<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks>;
+  $definitions: ComponentDefinitions<
+    Name,
+    ConfigDefinitions,
+    ActionDefinitions,
+    ModelDefinitions,
+    RouteDefinitions,
+    SocketDefinitions,
+    ScheduleDefinitions,
+    HookDefinitions
+  >;
+  (): ComponentInstance<
+    Name,
+    ConfigDefinitions,
+    ActionDefinitions,
+    ModelDefinitions,
+    RouteDefinitions,
+    SocketDefinitions,
+    ScheduleDefinitions,
+    HookDefinitions
+  >;
 }

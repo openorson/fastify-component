@@ -12,8 +12,8 @@ export interface ComponentSocketDefinition<SocketParam extends NestedObjectValid
 
 export type ComponentSocketParams = Record<string, NestedObjectValidatorExpression>;
 
-export type ComponentSocketDefinitions<SocketParams extends ComponentSocketParams> = {
+export type ComponentSocketDefinitions<SocketParams extends ComponentSocketParams = ComponentSocketParams> = {
   [Message in keyof SocketParams]: ComponentSocketDefinition<SocketParams[Message]>;
 };
 
-export interface ComponentSockets {}
+export interface ComponentSockets<Sockets extends ComponentSocketDefinitions = ComponentSocketDefinitions> {}

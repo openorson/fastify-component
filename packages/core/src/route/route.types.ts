@@ -31,8 +31,8 @@ export interface ComponentRouteDefinition<RouteSchema extends ComponentRouteSche
   ) => RouteResult<ValidatorExpressionAsType<RouteSchema["data"]>>;
 }
 
-export type ComponentRouteDefinitions<RouteSchemas extends ComponentRouteSchemas> = {
+export type ComponentRouteDefinitions<RouteSchemas extends ComponentRouteSchemas = ComponentRouteSchemas> = {
   [Path in keyof RouteSchemas]: ComponentRouteDefinition<RouteSchemas[Path]>;
 };
 
-export interface ComponentRoutes {}
+export interface ComponentRoutes<Route extends ComponentRouteDefinitions = ComponentRouteDefinitions> {}

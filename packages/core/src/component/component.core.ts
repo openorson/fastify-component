@@ -1,45 +1,44 @@
-import { ComponentActions } from "../action/action.types";
-import { ComponentConfigs } from "../config/config.types";
-import { ComponentHooks } from "../hook/hook.types";
-import { ComponentModels } from "../model/model.types";
-import { ComponentRoutes } from "../route/route.types";
-import { ComponentSchedules } from "../schedule/schedule.types";
-import { ComponentSockets } from "../socket/socket.types";
+import { ComponentActionDefinitions } from "../action/action.types";
+import { ComponentConfigDefinitions } from "../config/config.types";
+import { ComponentHookDefinitions } from "../hook/hook.types";
+import { ComponentModelDefinitions } from "../model/model.types";
+import { ComponentRouteDefinitions } from "../route/route.types";
+import { ComponentScheduleDefinitions } from "../schedule/schedule.types";
+import { ComponentSocketDefinitions } from "../socket/socket.types";
 import { Component, ComponentDefinitions } from "./component.types";
 
 export function defineComponent<
   Name extends string,
-  Configs extends ComponentConfigs,
-  Actions extends ComponentActions,
-  Models extends ComponentModels,
-  Routes extends ComponentRoutes,
-  Sockets extends ComponentSockets,
-  Schedules extends ComponentSchedules,
-  Hooks extends ComponentHooks
+  ConfigDefinitions extends ComponentConfigDefinitions,
+  ActionDefinitions extends ComponentActionDefinitions,
+  ModelDefinitions extends ComponentModelDefinitions,
+  RouteDefinitions extends ComponentRouteDefinitions,
+  SocketDefinitions extends ComponentSocketDefinitions,
+  ScheduleDefinitions extends ComponentScheduleDefinitions,
+  HookDefinitions extends ComponentHookDefinitions
 >(
-  definitions: ComponentDefinitions<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks>
-): Component<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks> {
+  definitions: ComponentDefinitions<
+    Name,
+    ConfigDefinitions,
+    ActionDefinitions,
+    ModelDefinitions,
+    RouteDefinitions,
+    SocketDefinitions,
+    ScheduleDefinitions,
+    HookDefinitions
+  >
+): Component<
+  Name,
+  ConfigDefinitions,
+  ActionDefinitions,
+  ModelDefinitions,
+  RouteDefinitions,
+  SocketDefinitions,
+  ScheduleDefinitions,
+  HookDefinitions
+> {
   function Component() {
-    const name = definitions.name;
-
-    const configs = typeof definitions.configs === "function" ? definitions.configs({ name }) : definitions.configs;
-
-    const actions = definitions.actions;
-
-    const models =
-      typeof definitions.models === "function"
-        ? definitions.models({ name: definitions.name, configs: configs, actions: actions })
-        : definitions.models;
-
-    const routes = typeof definitions.routes === "function" ? definitions.routes({ name, configs, actions, models }) : definitions.routes;
-
-    const sockets = typeof definitions.sockets === "function" ? definitions.sockets({ name, configs, actions, models }) : definitions.sockets;
-
-    const schedules = typeof definitions.schedules === "function" ? definitions.schedules({ name, configs, actions, models }) : definitions.schedules;
-
-    const hooks = typeof definitions.hooks === "function" ? definitions.hooks({ name, configs, actions }) : definitions.hooks;
-
-    return { blueprint: { name, configs, actions, models, routes, sockets, schedules, hooks } };
+    return { definitions: definitions };
   }
 
   Component.$definitions = definitions;

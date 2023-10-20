@@ -16,22 +16,22 @@ export function createApp(): App {
 
         const serverOptions: FastifyServerOptions = { logger: true };
         for await (const component of appComponents) {
-          const options = await component.blueprint.hooks?.beforeCreate?.();
+          const options = await component.definitions.hooks?.beforeCreate?.();
           Object.assign(serverOptions, options ?? {});
         }
 
         const server = fastify(serverOptions);
 
         for await (const component of appComponents) {
-          await component.blueprint.hooks?.afterCreate?.(server);
+          await component.definitions.hooks?.afterCreate?.(server);
         }
 
         for await (const component of appComponents) {
           await server.register((server, _, done) => {
-            Object.entries(component.blueprint.routes ?? {}).forEach(([path, route]) => {
+            Object.entries(component.definitions.routes ?? {}).forEach(([path, route]) => {
               server.route({
                 ...route,
-                url: path.startsWith("/") ? path : `/${component.blueprint.name}/${path}`,
+                url: path.startsWith("/") ? path : `/${component.definitions.name}/${path}`,
               });
             });
             done();
@@ -39,7 +39,7 @@ export function createApp(): App {
         }
 
         for await (const component of appComponents) {
-          await component.blueprint.hooks?.beforeStart?.(server);
+          await component.definitions.hooks?.beforeStart?.(server);
         }
 
         await server.ready();
@@ -50,7 +50,7 @@ export function createApp(): App {
         });
 
         for await (const component of appComponents) {
-          await component.blueprint.hooks?.afterStart?.(server);
+          await component.definitions.hooks?.afterStart?.(server);
         }
       } catch (error) {
         console.error(error);
