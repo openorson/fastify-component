@@ -1,6 +1,6 @@
 import { ComponentActions } from "../action/action.types";
 import { ComponentConfigs } from "../config/config.types";
-import { ComponentHookDefinitions, ComponentHooks } from "../hook/hook.types";
+import { ComponentHooks } from "../hook/hook.types";
 import { ComponentModels } from "../model/model.types";
 import { ComponentRoutes } from "../route/route.types";
 import { ComponentSchedules } from "../schedule/schedule.types";
