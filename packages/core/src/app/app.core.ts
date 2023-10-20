@@ -1,13 +1,13 @@
 import fastify from "fastify";
-import { App } from "../types/app";
-import { Component } from "../types/component";
+import { App } from "./app.types";
+import { Component } from "../component/component.types";
 
 export function createApp(): App {
-  let appComponent: Component;
+  let appComponents: Component[];
 
   const app: App = {
-    install(component) {
-      appComponent = component;
+    install(...components) {
+      appComponents.push(...components);
       return this;
     },
     async bootstrap(options) {

@@ -1,4 +1,4 @@
-import { Component } from "./component";
+import { Component } from "../component/component.types";
 
 export interface AppOptions {}
 
@@ -8,6 +8,6 @@ export interface BootstrapOptions {
 }
 
 export interface App {
-  install: (component: Component) => this;
+  install: (...components: Component[]) => this;
   bootstrap: (options?: BootstrapOptions) => Promise<void>;
 }

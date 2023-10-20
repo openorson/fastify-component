@@ -6,25 +6,26 @@ import { ComponentRoutes } from "../route/route.types";
 import { ComponentSchedules } from "../schedule/schedule.types";
 import { ComponentSockets } from "../socket/socket.types";
 
-// TODO
 export type ComponentContext<Context, Component> = Component | ((context: Context) => Component);
 
 export interface ComponentDefinitions<
   Name extends string,
   Configs extends ComponentConfigs<any>,
-  Hooks extends ComponentHooks<any>,
+  Actions extends ComponentActions<any>,
   Models extends ComponentModels<any>,
   Routes extends ComponentRoutes,
   Sockets extends ComponentSockets,
   Schedules extends ComponentSchedules<any>,
-  Actions extends ComponentActions<any>
+  Hooks extends ComponentHooks<any>
 > {
   name: Name;
-  configs?: Configs;
-  hooks?: Hooks;
-  models?: Models;
-  routes?: Routes;
-  sockets?: Sockets;
-  schedules?: Schedules;
+  configs?: ComponentContext<{ name: Name }, Configs>;
   actions?: Actions;
+  models?: ComponentContext<{ name: Name; configs: Configs; actions: Actions }, Models>;
+  routes?: ComponentContext<{ name: Name; configs: Configs; actions: Actions; models: Models }, Routes>;
+  sockets?: ComponentContext<{ name: Name; configs: Configs; actions: Actions; models: Models }, Sockets>;
+  schedules?: ComponentContext<{ name: Name; configs: Configs; actions: Actions; models: Models }, Schedules>;
+  hooks?: ComponentContext<{ name: Name; configs: Configs; actions: Actions }, Hooks>;
 }
+
+export interface Component {}
