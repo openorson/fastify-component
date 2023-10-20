@@ -29,14 +29,14 @@ export interface ComponentDefinitions<
 }
 
 export interface ComponentInstanceBlueprint<
-  Name extends string,
-  Configs extends ComponentConfigs,
-  Actions extends ComponentActions,
-  Models extends ComponentModels,
-  Routes extends ComponentRoutes,
-  Sockets extends ComponentSockets,
-  Schedules extends ComponentSchedules,
-  Hooks extends ComponentHooks
+  Name extends string = string,
+  Configs extends ComponentConfigs = ComponentConfigs,
+  Actions extends ComponentActions = ComponentActions,
+  Models extends ComponentModels = ComponentModels,
+  Routes extends ComponentRoutes = ComponentRoutes,
+  Sockets extends ComponentSockets = ComponentSockets,
+  Schedules extends ComponentSchedules = ComponentSchedules,
+  Hooks extends ComponentHooks = ComponentHooks
 > {
   name: Name;
   configs?: Configs;
@@ -49,14 +49,14 @@ export interface ComponentInstanceBlueprint<
 }
 
 export interface ComponentInstance<
-  Name extends string,
-  Configs extends ComponentConfigs,
-  Actions extends ComponentActions,
-  Models extends ComponentModels,
-  Routes extends ComponentRoutes,
-  Sockets extends ComponentSockets,
-  Schedules extends ComponentSchedules,
-  Hooks extends ComponentHooks
+  Name extends string = string,
+  Configs extends ComponentConfigs = ComponentConfigs,
+  Actions extends ComponentActions = ComponentActions,
+  Models extends ComponentModels = ComponentModels,
+  Routes extends ComponentRoutes = ComponentRoutes,
+  Sockets extends ComponentSockets = ComponentSockets,
+  Schedules extends ComponentSchedules = ComponentSchedules,
+  Hooks extends ComponentHooks = ComponentHooks
 > {
   blueprint: ComponentInstanceBlueprint<Name, Configs, Actions, Models, Routes, Sockets, Schedules, Hooks>;
 }
