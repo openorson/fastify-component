@@ -8,6 +8,6 @@ export interface BootstrapOptions {
 }
 
 export interface App {
-  install: (...components: ComponentInstance[]) => this;
+  install: (...components: ComponentInstance<any, any, any, any, any, any, any, any>[]) => this;
   bootstrap: (options?: BootstrapOptions) => Promise<void>;
 }

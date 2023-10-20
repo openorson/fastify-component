@@ -1,0 +1,13 @@
+{
+  "name": "demo",
+  "type": "module",
+  "scripts": {
+    "start:build": "tsup --watch",
+    "start:bootstrap": "node-dev dist/main.js",
+    "start": "concurrently npm:start:*"
+  },
+  "dependencies": {
+    "@fastify-component/auth": "*",
+    "@fastify-component/core": "*"
+  }
+}
