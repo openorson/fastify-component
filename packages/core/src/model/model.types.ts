@@ -65,6 +65,6 @@ export type ComponentModelFields<Fields extends Record<string, ModelsFields>> = 
   [Name in keyof Fields]: ModelFieldTypes[Fields[Name]["type"]];
 };
 
-export type ComponentModels<Models extends ComponentModelDefinitions> = {
+export type ComponentModels<Models extends ComponentModelDefinitions = ComponentModelDefinitions> = {
   [Name in keyof Models]: Model<HydratedDocument<ComponentModelFields<Models[Name]["fields"]>>>;
 };

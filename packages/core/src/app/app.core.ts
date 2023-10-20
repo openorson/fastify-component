@@ -1,4 +1,4 @@
-import fastify from "fastify";
+import fastify, { FastifyServerOptions } from "fastify";
 import { App } from "./app.types";
 import { Component } from "../component/component.types";
 
@@ -11,9 +11,14 @@ export function createApp(): App {
       return this;
     },
     async bootstrap(options) {
-      const { port = process.env.PORT, host = process.env.HOST } = options ?? {};
-
       try {
+        const { port = process.env.PORT, host = process.env.HOST } = options ?? {};
+        const serverOptions: FastifyServerOptions = { logger: true };
+        for await (const component of appComponents) {
+          const options = component.$definitions.hooks;
+          Object.assign(serverOptions, options ?? {});
+        }
+
         const server = fastify();
 
         await server.ready();

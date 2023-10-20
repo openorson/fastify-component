@@ -5,4 +5,5 @@ export { defineRoutes } from "./route/route.core";
 export { defineSockets } from "./socket/socket.core";
 export { defineSchedules } from "./schedule/schedule.core";
 export { defineHooks } from "./hook/hook.core";
+export { defineComponent } from "./component/component.core";
 export { createApp } from "./app/app.core";

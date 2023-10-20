@@ -9,6 +9,6 @@ export interface ComponentConfigDefinitions<
   default: Default;
 }
 
-export interface ComponentConfigs<Data> {
+export interface ComponentConfigs<Data = unknown> {
   get data(): Data;
 }
