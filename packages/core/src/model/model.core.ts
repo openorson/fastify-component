@@ -1,16 +1,41 @@
-import { Schema } from "mongoose";
+import mongoose, { Model, SchemaDefinitionProperty } from "mongoose";
 import { ComponentModelDefinitions, ComponentModels } from "./model.types";
+import { MODEL_FIELD_TYPES } from "./model.const";
 
-export const DATA_FIELD_TYPES = {
-  id: Schema.Types.ObjectId,
-  string: String,
-  number: Number,
-  boolean: Boolean,
-  date: Date,
-  buffer: Buffer,
-  bigInt: BigInt,
-};
+export function defineModels<const ModelDefinitions extends ComponentModelDefinitions>(
+  definitions: ModelDefinitions
+): ComponentModels<ModelDefinitions> {
+  const models = Object.entries(definitions).reduce((models, [modelName, modelDefinition]) => {
+    const schema = new mongoose.Schema(
+      Object.fromEntries(
+        Object.entries(modelDefinition.fields).map(([fieldName, fieldDefinition]) => {
+          const { comment, type, each, default: defaultValue, nullable, immutable, selectable, unique, sparse, text, index } = fieldDefinition;
 
-export function defineModels<ModelDefinitions extends ComponentModelDefinitions>(definitions: ModelDefinitions): ComponentModels<ModelDefinitions> {
-  return {} as ComponentModels<ModelDefinitions>;
+          const field: SchemaDefinitionProperty = {
+            comment,
+            type: each ? [MODEL_FIELD_TYPES[type]] : MODEL_FIELD_TYPES[type],
+            default: defaultValue,
+            required: !(nullable ?? false),
+            immutable: immutable ?? false,
+            select: selectable ?? true,
+            unique: unique ?? false,
+            sparse: sparse ?? false,
+            text: text ?? false,
+            index: index ?? false,
+          };
+
+          if (type === "string") field["trim"] = true;
+          if (type === "date") field["expires"] = fieldDefinition.expires;
+
+          return [fieldName, field];
+        })
+      )
+    );
+
+    models[modelName] = mongoose.model(modelName, schema);
+
+    return models;
+  }, {} as Record<string, Model<any>>);
+
+  return models as ComponentModels<ModelDefinitions>;
 }

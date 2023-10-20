@@ -1,4 +1,5 @@
 import { HydratedDocument, Model } from "mongoose";
+import { MODEL_BASE_FIELDS } from "./model.const";
 
 export interface ModelFieldTypes {
   id: string;
@@ -61,8 +62,11 @@ export interface ComponentModelDefinition {
 
 export type ComponentModelDefinitions = Record<string, ComponentModelDefinition>;
 
-export type ComponentModelFields<Fields extends Record<string, ModelsFields>> = {
-  [Name in keyof Fields]: ModelFieldTypes[Fields[Name]["type"]];
+export type ComponentModelFields<
+  Fields extends Record<string, ModelsFields>,
+  AllFields extends Fields & typeof MODEL_BASE_FIELDS = Fields & typeof MODEL_BASE_FIELDS
+> = {
+  [Name in keyof AllFields]: ModelFieldTypes[AllFields[Name]["type"]];
 };
 
 export type ComponentModels<Models extends ComponentModelDefinitions = ComponentModelDefinitions> = {
