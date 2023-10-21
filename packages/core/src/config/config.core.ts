@@ -4,6 +4,7 @@ export function defineConfigs<ConfigDefinitions extends ComponentConfigDefinitio
   definitions: ConfigDefinitions
 ): ComponentConfigs<ConfigDefinitions> {
   return {
+    [Symbol.for("definitions")]: definitions,
     get data() {
       return definitions.data;
     },

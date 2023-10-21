@@ -69,6 +69,8 @@ export type ComponentModelFields<
   [Name in keyof AllFields]: ModelFieldTypes[AllFields[Name]["type"]];
 };
 
-export type ComponentModels<Models extends ComponentModelDefinitions = ComponentModelDefinitions> = {
-  [Name in keyof Models]: Model<HydratedDocument<ComponentModelFields<Models[Name]["fields"]>>>;
+export type ComponentModels<Definitions extends ComponentModelDefinitions = ComponentModelDefinitions> = {
+  [definitions: symbol]: Definitions;
+} & {
+  [Name in keyof Definitions]: Model<HydratedDocument<ComponentModelFields<Definitions[Name]["fields"]>>>;
 };

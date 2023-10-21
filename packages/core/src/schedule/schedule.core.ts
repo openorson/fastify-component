@@ -1,7 +1,7 @@
 import { ComponentScheduleDefinitions, ComponentSchedules } from "./schedule.types.js";
 
 export function defineSchedules<ScheduleDefinitions extends ComponentScheduleDefinitions>(
-  definitions: ComponentScheduleDefinitions
+  definitions: ScheduleDefinitions
 ): ComponentSchedules<ScheduleDefinitions> {
-  return {};
+  return { [Symbol.for("definitions")]: definitions };
 }

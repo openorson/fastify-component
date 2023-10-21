@@ -37,5 +37,5 @@ export function defineModels<const ModelDefinitions extends ComponentModelDefini
     return models;
   }, {} as Record<string, Model<any>>);
 
-  return models as ComponentModels<ModelDefinitions>;
+  return { [Symbol.for("definitions")]: definitions, models } as ComponentModels<ModelDefinitions>;
 }

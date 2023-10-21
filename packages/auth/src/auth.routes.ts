@@ -10,6 +10,8 @@ export default defineRoutes({
         password: "string!",
       },
     },
-    handler(context) {},
+    handler(context) {
+      return context.query;
+    },
   },
 });

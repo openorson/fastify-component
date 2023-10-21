@@ -1,6 +1,18 @@
 import { ComponentInstance } from "../component/component.types.js";
 
-export interface AppOptions {}
+export type AppConfigs = Record<
+  string,
+  {
+    type: string;
+    value: string;
+    comment: string;
+  }
+>;
+
+export interface AppOptions {
+  /** 配置文件路径 */
+  env?: string;
+}
 
 export interface BootstrapOptions {
   port?: string | number;

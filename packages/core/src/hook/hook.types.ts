@@ -11,4 +11,6 @@ export interface ComponentHookDefinitions {
   afterStart?: (server: FastifyInstance) => void | Promise<void>;
 }
 
-export type ComponentHooks<Hooks extends ComponentHookDefinitions = ComponentHookDefinitions> = Hooks;
+export type ComponentHooks<Definitions extends ComponentHookDefinitions = ComponentHookDefinitions> = {
+  [definitions: symbol]: Definitions;
+};

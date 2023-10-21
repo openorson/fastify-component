@@ -2,9 +2,10 @@
   "name": "demo",
   "type": "module",
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "start": "node-dev dist/main.js"
+    "dev:watch": "tsc -w",
+    "dev:start": "node-dev dist/main.js",
+    "dev": "concurrently npm:dev:*",
+    "start": "node dist/main.js"
   },
   "dependencies": {
     "@fastify-component/auth": "*",

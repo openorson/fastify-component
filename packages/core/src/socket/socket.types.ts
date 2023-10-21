@@ -15,4 +15,6 @@ export type ComponentSocketDefinitions<SocketParams extends ComponentSocketParam
   [Message in keyof SocketParams]: ComponentSocketDefinition<SocketParams[Message]>;
 };
 
-export interface ComponentSockets<Sockets extends ComponentSocketDefinitions = ComponentSocketDefinitions> {}
+export interface ComponentSockets<Definitions extends ComponentSocketDefinitions = ComponentSocketDefinitions> {
+  [definitions: symbol]: Definitions;
+}

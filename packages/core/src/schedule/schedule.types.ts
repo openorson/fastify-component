@@ -5,4 +5,6 @@ export interface ComponentScheduleDefinition {
 
 export type ComponentScheduleDefinitions = Record<string, ComponentScheduleDefinition>;
 
-export interface ComponentSchedules<Schedules extends ComponentScheduleDefinitions = ComponentScheduleDefinitions> {}
+export interface ComponentSchedules<Definitions extends ComponentScheduleDefinitions = ComponentScheduleDefinitions> {
+  [definitions: symbol]: Definitions;
+}
