@@ -38,7 +38,8 @@ export function defineComponent<
   HookDefinitions
 > {
   function Component() {
-    return { definitions: definitions };
+    console.log(definitions);
+    return { definitions };
   }
 
   Component.$definitions = definitions;

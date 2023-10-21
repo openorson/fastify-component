@@ -3,7 +3,7 @@ import { App } from "./app.types";
 import { ComponentInstance } from "../component/component.types";
 
 export function createApp(): App {
-  let appComponents: ComponentInstance[];
+  let appComponents: ComponentInstance[] = [];
 
   const app: App = {
     install(...components) {

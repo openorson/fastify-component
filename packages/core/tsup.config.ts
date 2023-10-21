@@ -8,4 +8,11 @@ export default defineConfig([
     dts: true,
     sourcemap: true,
   },
+  {
+    entry: ["src"],
+    outDir: "dist/cjs",
+    format: ["cjs"],
+    dts: true,
+    sourcemap: true,
+  },
 ]);
