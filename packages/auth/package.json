@@ -1,21 +1,15 @@
 {
   "name": "@fastify-component/auth",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs"
-    }
-  },
-  "main": "./dist/cjs/index.cjs",
-  "types": "./dist/cjs/index.d.cts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup"
+    "dev": "tsc -w",
+    "build": "tsc"
   },
   "dependencies": {
     "@fastify-component/core": "*"

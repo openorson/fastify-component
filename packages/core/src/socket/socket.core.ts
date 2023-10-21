@@ -1,4 +1,4 @@
-import { ComponentSocketDefinitions, ComponentSockets } from "./socket.types";
+import { ComponentSocketDefinitions, ComponentSockets } from "./socket.types.js";
 
 export function defineSockets<SocketDefinitions extends ComponentSocketDefinitions>(
   definitions: SocketDefinitions

@@ -1,5 +1,5 @@
 import { HydratedDocument, Model } from "mongoose";
-import { MODEL_BASE_FIELDS } from "./model.const";
+import { MODEL_BASE_FIELDS } from "./model.const.js";
 
 export interface ModelFieldTypes {
   id: string;

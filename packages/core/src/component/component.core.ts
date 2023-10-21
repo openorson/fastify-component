@@ -1,11 +1,11 @@
-import { ComponentActionDefinitions } from "../action/action.types";
-import { ComponentConfigDefinitions } from "../config/config.types";
-import { ComponentHookDefinitions } from "../hook/hook.types";
-import { ComponentModelDefinitions } from "../model/model.types";
-import { ComponentRouteDefinitions } from "../route/route.types";
-import { ComponentScheduleDefinitions } from "../schedule/schedule.types";
-import { ComponentSocketDefinitions } from "../socket/socket.types";
-import { Component, ComponentDefinitions } from "./component.types";
+import { ComponentActionDefinitions } from "../action/action.types.js";
+import { ComponentConfigDefinitions } from "../config/config.types.js";
+import { ComponentHookDefinitions } from "../hook/hook.types.js";
+import { ComponentModelDefinitions } from "../model/model.types.js";
+import { ComponentRouteDefinitions } from "../route/route.types.js";
+import { ComponentScheduleDefinitions } from "../schedule/schedule.types.js";
+import { ComponentSocketDefinitions } from "../socket/socket.types.js";
+import { Component, ComponentDefinitions } from "./component.types.js";
 
 export function defineComponent<
   Name extends string,

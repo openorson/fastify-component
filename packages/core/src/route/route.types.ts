@@ -1,6 +1,5 @@
-import { FastifyReply, FastifyRequest, HTTPMethods } from "fastify";
-import { ValidatorExpressionAsType } from "expr-validator";
-import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
+import { FastifyReply, FastifyRequest, HTTPMethods, RouteOptions } from "fastify";
+import { NestedObjectValidatorExpression, ValidatorExpressionAsType } from "expr-validator";
 
 export interface ComponentRouteSchema {
   query?: NestedObjectValidatorExpression;
@@ -35,4 +34,6 @@ export type ComponentRouteDefinitions<RouteSchemas extends ComponentRouteSchemas
   [Path in keyof RouteSchemas]: ComponentRouteDefinition<RouteSchemas[Path]>;
 };
 
-export interface ComponentRoutes<Route extends ComponentRouteDefinitions = ComponentRouteDefinitions> {}
+export interface ComponentRoutes<Routes extends ComponentRouteDefinitions = ComponentRouteDefinitions> {
+  fastifyRoutes: RouteOptions[];
+}

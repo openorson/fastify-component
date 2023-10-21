@@ -1,6 +1,6 @@
 import fastify, { FastifyServerOptions } from "fastify";
-import { App } from "./app.types";
-import { ComponentInstance } from "../component/component.types";
+import { App } from "./app.types.js";
+import { ComponentInstance } from "../component/component.types.js";
 
 export function createApp(): App {
   let appComponents: ComponentInstance[] = [];
@@ -27,13 +27,14 @@ export function createApp(): App {
         }
 
         for await (const component of appComponents) {
-          await server.register((server, _, done) => {
-            Object.entries(component.definitions.routes ?? {}).forEach(([path, route]) => {
-              server.route({
-                ...route,
-                url: path.startsWith("/") ? path : `/${component.definitions.name}/${path}`,
-              });
-            });
+          await server.register(async (server, _, done) => {
+            const routes = component.definitions.routes?.fastifyRoutes ?? [];
+            for await (const route of routes) {
+              // server.route({
+              //   ...route,
+              //   url: path.startsWith("/") ? path : `/${component.definitions.name}/${path}`,
+              // });
+            }
             done();
           });
         }

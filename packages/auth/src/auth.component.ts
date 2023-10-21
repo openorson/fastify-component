@@ -1,11 +1,11 @@
 import { defineComponent } from "@fastify-component/core";
-import authRoutes from "./auth.routes";
-import authModels from "./auth.models";
-import authHooks from "./auth.hooks";
-import authActions from "./auth.actions";
-import authSockets from "./auth.sockets";
-import authSchedules from "./auth.schedules";
-import authConfigs from "./auth.configs";
+import authRoutes from "./auth.routes.js";
+import authModels from "./auth.models.js";
+import authHooks from "./auth.hooks.js";
+import authActions from "./auth.actions.js";
+import authSockets from "./auth.sockets.js";
+import authSchedules from "./auth.schedules.js";
+import authConfigs from "./auth.configs.js";
 
 export const AuthComponent = defineComponent({
   name: "auth",

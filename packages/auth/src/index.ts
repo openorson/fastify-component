@@ -1,1 +1,1 @@
-export { AuthComponent } from "./auth.component";
+export { AuthComponent } from "./auth.component.js";

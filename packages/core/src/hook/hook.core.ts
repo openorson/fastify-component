@@ -1,4 +1,4 @@
-import { ComponentHookDefinitions, ComponentHooks } from "./hook.types";
+import { ComponentHookDefinitions, ComponentHooks } from "./hook.types.js";
 
 export function defineHooks<HookDefinitions extends ComponentHookDefinitions>(definitions: HookDefinitions): ComponentHooks<HookDefinitions> {
   return definitions;

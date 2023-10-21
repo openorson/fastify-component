@@ -1,5 +1,4 @@
-import { ValidatorExpressionAsType } from "expr-validator";
-import { NestedObjectValidatorExpression } from "expr-validator/dist/esm/validators/object";
+import { NestedObjectValidatorExpression, ValidatorExpressionAsType } from "expr-validator";
 
 export interface ComponentSocketHandlerContext<Params> {
   params: Params;

@@ -1,6 +1,6 @@
 import mongoose, { Model, SchemaDefinitionProperty } from "mongoose";
-import { ComponentModelDefinitions, ComponentModels } from "./model.types";
-import { MODEL_FIELD_TYPES } from "./model.const";
+import { ComponentModelDefinitions, ComponentModels } from "./model.types.js";
+import { MODEL_FIELD_TYPES } from "./model.const.js";
 
 export function defineModels<const ModelDefinitions extends ComponentModelDefinitions>(
   definitions: ModelDefinitions

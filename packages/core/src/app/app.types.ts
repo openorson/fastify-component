@@ -1,4 +1,4 @@
-import { ComponentInstance } from "../component/component.types";
+import { ComponentInstance } from "../component/component.types.js";
 
 export interface AppOptions {}
 

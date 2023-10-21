@@ -1,4 +1,4 @@
-import { ComponentScheduleDefinitions, ComponentSchedules } from "./schedule.types";
+import { ComponentScheduleDefinitions, ComponentSchedules } from "./schedule.types.js";
 
 export function defineSchedules<ScheduleDefinitions extends ComponentScheduleDefinitions>(
   definitions: ComponentScheduleDefinitions

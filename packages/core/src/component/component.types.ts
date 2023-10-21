@@ -1,10 +1,10 @@
-import { ComponentActionDefinitions, ComponentActions } from "../action/action.types";
-import { ComponentConfigDefinitions, ComponentConfigs } from "../config/config.types";
-import { ComponentHookDefinitions, ComponentHooks } from "../hook/hook.types";
-import { ComponentModelDefinitions, ComponentModels } from "../model/model.types";
-import { ComponentRouteDefinitions, ComponentRoutes } from "../route/route.types";
-import { ComponentScheduleDefinitions, ComponentSchedules } from "../schedule/schedule.types";
-import { ComponentSocketDefinitions, ComponentSockets } from "../socket/socket.types";
+import { ComponentActionDefinitions, ComponentActions } from "../action/action.types.js";
+import { ComponentConfigDefinitions, ComponentConfigs } from "../config/config.types.js";
+import { ComponentHookDefinitions, ComponentHooks } from "../hook/hook.types.js";
+import { ComponentModelDefinitions, ComponentModels } from "../model/model.types.js";
+import { ComponentRouteDefinitions, ComponentRoutes } from "../route/route.types.js";
+import { ComponentScheduleDefinitions, ComponentSchedules } from "../schedule/schedule.types.js";
+import { ComponentSocketDefinitions, ComponentSockets } from "../socket/socket.types.js";
 
 export interface ComponentDefinitions<
   Name extends string = string,
