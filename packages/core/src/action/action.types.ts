@@ -5,5 +5,5 @@ export type ComponentActionDefinitions = Record<string, ComponentActionDefinitio
 export type ComponentActions<Definitions extends ComponentActionDefinitions = ComponentActionDefinitions> = {
   [definitions: symbol]: Definitions;
 } & {
-  [Name in keyof Definitions]: Definitions[Name] & { decorate: (...decorators: ((...args: any) => any)[]) => Definitions[Name] };
+  [Name in keyof Definitions]: Definitions[Name];
 };
